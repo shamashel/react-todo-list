@@ -1,0 +1,67 @@
+.todosContainer {
+  margin: 25px 325px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.todosHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+img {
+  height: 25px
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.todosBody {
+  width: 100%;
+  height: 70vh;
+  border: solid #eaeaea 1pt;
+  border-radius: 10px;
+  box-shadow: #c5c5c5 1px 2px;
+  background-color: white;
+}
+
+.todoBody {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+}
+
+.todoContent {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  border-bottom: #eaeaea solid 1pt;
+}
+
+.todoCheckbox {
+  height: 35px;
+  width: 35px;
+  margin-right: 20px;
+}
+
+span {
+  font-size: 20px;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.todoMenu {
+  height: 15px;
+}
