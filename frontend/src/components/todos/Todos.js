@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Todos.css';
 import add from './add_icon.PNG';
 import Todo from './Todo.js';
 
-class Todos extends React.Component {
-
-  render() {
+export default function Todos({todos}){
+  const [items, setItems] = useState(todos);
     return (
         <div className="todosContainer">
           <div className="todosHeader">
@@ -16,7 +15,7 @@ class Todos extends React.Component {
           </div>
           <div className="todosBody">
             {
-              this.props.todos.map((todo, i, {length}) => {
+              items.map((todo, i, {length}) => {
                 return (
                     <Todo key={todo.id} todo={todo} isLast={i === length - 1} />
                 );
@@ -25,7 +24,4 @@ class Todos extends React.Component {
           </div>
         </div>
     )
-  }
 }
-
-export default Todos;

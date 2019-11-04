@@ -1,57 +1,62 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Todos.css';
 import menu from './menu.png';
 import checked from './checked.png';
 import unchecked from './unchecked.png';
 
-class Todo extends React.Component {
+export default function Todo({todo, isLast}){
 
-  todo = this.props.todo;
+  const [ item, setItem ] = useState(todo);
 
-  render() {
-    return (
-        <div>
-          <div className={this.getClasses()}>
-            <div className="todoContent">
-              <img
-                  src={this.getImage()}
-                  alt={this.getAltText()}
-                  className="todoCheckbox"
-              />
-              <span className={this.getStrikethrough} id={this.todo.id}>{this.todo.description}</span>
-            </div>
-            <img className="todoMenu" src={menu} alt="menu" />
-          </div>
-        </div>
-    )
+  function handleClick(e) {
+    e.preventDefault();
+    setItem({
+      ...item,
+      completed: !item.completed
+    });
   }
 
-  getImage() {
-    if(this.todo.completed)
+  function getImage() {
+    if(item.completed)
       return checked;
     else
       return unchecked;
   }
 
-  getAltText() {
-    if(this.todo.completed)
+  function getAltText() {
+    if(item.completed)
       return "Completed";
     else
       return "Not Completed";
   }
 
-  getStrikethrough() {
-    if(this.todo.completed) {
+  function getStrikethrough() {
+    if(item.completed) {
       return "strikethrough";
     }
   }
 
-  getClasses() {
-    if(!this.props.isLast) {
+  function getClasses() {
+    if(isLast) {
       return "todoBody separator";
     }
     else return "todoBody";
   }
-}
 
-export default Todo;
+    return (
+        <div>
+          <div className={getClasses()}>
+            <div className="todoContent">
+              <img
+                  src={getImage()}
+                  alt={getAltText()}
+                  onClick={handleClick}
+                  className="todoCheckbox"
+              />
+              <span className={getStrikethrough()} id={item.id}>{item.description}</span>
+            </div>
+            <img className="todoMenu" src={menu} alt="menu" />
+          </div>
+        </div>
+    )
+}
