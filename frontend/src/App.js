@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './components/header/Header.js';
 import Todos from './components/todos/Todos';
 import './App.css';
 
-export class App extends React.Component {
-  state = {
-    todos : [
+export default function App() {
+  const [todos, setTodos] = useState(
+    [
       {
         id: 1,
         description: "First Todo",
@@ -21,18 +21,14 @@ export class App extends React.Component {
         description: "Third Todo",
         completed: false
       }
-   ]
-  };
-  render () {
-    return (
-        <div className="App">
-          <Header/>
-          <div className="body">
-            <Todos todos={this.state.todos}/>
-          </div>
+   ]);
+  return (
+      <div className="App">
+        <Header/>
+        <div className="body">
+          <Todos todos={todos}/>
         </div>
-    );
-  }
+      </div>
+  );
 }
 
-export default App;
