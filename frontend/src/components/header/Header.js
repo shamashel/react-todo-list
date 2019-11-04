@@ -1,42 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Header.css';
 import logo from './todo-logo.png'
 
-class Header extends React.Component {
-  state;
+export default function Header() {
 
-  constructor(props) {
-    super(props);
-    this.state = {active: this.active};
-  }
+  const [active, setActive] = useState("todos");
+  const elements = [
+    "home",
+    "todos",
+    "settings"
+  ];
 
-
-  render() {
-    return (
-        <div className="header">
-          <div className="header-title">
-            <img src={logo} className="header-logo" alt="Logo"/>
-            <h1>todoer</h1>
-          </div>
-          <div className="header-content">
-            {this.elements.map(element => {
-              return (
-                  <a href="#1"
-                     id={element}
-                     key={element}
-                     className = {this.isActive(element)}
-                     onClick = {() => {this.setActive(element)}}
-                  >
-                    {element}
-                  </a>
-              )
-            })}
-          </div>
+  return (
+      <div className="header">
+        <div className="header-title">
+          <img src={logo} className="header-logo" alt="Logo"/>
+          <h1>todoer</h1>
         </div>
-    )
-  }
-  isActive(element) {
-    if(this.state.active === element) {
+        <div className="header-content">
+          {elements.map(element => {
+            return (
+                <a href="#1"
+                    id={element}
+                    key={element}
+                    className = {isActive(element)}
+                    onClick = {() => {setActive(element)}}
+                >
+                  {element}
+                </a>
+            )
+          })}
+        </div>
+      </div>
+  )
+  
+  function isActive(element) {
+    if(active === element) {
       return "active";
     }
     else {
@@ -44,18 +43,4 @@ class Header extends React.Component {
     }
   }
 
-  setActive(element) {
-    this.setState({active: element})
-  }
-
-  elements = [
-    "home",
-    "todos",
-    "settings"
-  ]
-
-  active = "todos";
-
 }
-
-export default Header;
